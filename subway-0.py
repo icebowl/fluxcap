@@ -21,15 +21,17 @@ def clear_with_air_block(mc, x, y, z,h,k,l):
 	air = 0;
 	mc.setBlocks(x-h,y-k,z-l,x+h,y+k,z+l,air)	
 
-def shaftx(mc,xs,ys,zs,wh,l):
+def shaftx(mc,xs,ys,zs,wh,lgth):
 	wh = int(wh / 2)
-	mc.setBlocks(xs-wh,ys-wh,zs,xs+wh,ys+wh,zs+l,89)
-	mc.setBlocks(xs-wh+1,ys-wh+1,zs,xs+wh-1,ys+wh-1,zs+l,0)
+	mc.setBlocks(xs-wh,ys-wh,zs,xs+wh,ys+wh,zs+lgth,89)
+	mc.setBlocks(xs-wh+1,ys-wh+1,zs,xs+wh-1,ys+wh-1,zs+lgth,0)
 	
-def shaftz(mc,xs,ys,zs,wh,l):
+def shaftz(mc,xs,ys,zs,wh,lgth):
 	wh = int(wh / 2)
-	mc.setBlocks(xs-wh,ys-wh,zs,xs+wh+l,ys+wh,zs,89)
-	mc.setBlocks(xs-wh+1,ys-wh+1,zs,xs+wh-1+l,ys+wh-1,zs,0)
+	mc.setBlock(xs,ys,zs,89)
+	mc.setBlocks(xs,ys-wh,zs-wh,xs+lgth,ys+wh,zs+wh,89)
+	mc.setBlocks(xs,ys-wh+1,zs-wh+1,xs+lgth,ys+wh-1,zs+wh-1,0)
+	mc.setBlocks(xs-10,ys-wh+1,zs-wh+1,xs+lgth+10,ys+wh-1,zs+wh-1,7)
 
 def clear_build(mc,x, y, z):
 	xs ,ys,zs,xe,ye,ze = -127, -60, -127, 128, 50, 128
@@ -48,10 +50,9 @@ def clear_build(mc,x, y, z):
 	shaftx(mc,xs,ys,zs,10,100)
 	#mc.player.setPos(xs+1,ys+1,zs+2)
 	xs,ys,zs = -100, 30, -100
-	xs,ys,zs = -100, 30, -100
 	shaftx(mc,xs,ys,zs,10,100)
-	shaftz(mc,xs,ys,zs,10,100)
-	mc.player.setPos(xs+1,ys+1,zs+2)
+	shaftz(mc,xs-5,ys,zs,10,100)
+	mc.player.setPos(xs-1,ys-1,zs-1)
 	
 def main():
 	mc = init()
