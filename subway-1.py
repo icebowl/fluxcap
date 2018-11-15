@@ -1,4 +1,7 @@
-# Base project format.
+# This code needs some work.  
+# Four rectangles are created equal spaced from the orgin of the world 0,0,0
+# Air is filled into the rectanlges to create a tunnel or subway.
+# xs,ys,zs,wh,lgth = -30,-20,30,5,80 values need to be refined a bit .
 # put this on the desktop : git clone https://github.com/tritechsc/mcpi
 from mcpi.minecraft import Minecraft
 from mcpi import block
@@ -22,8 +25,8 @@ def clear_with_air_block(mc, x, y, z,h,k,l):
 	mc.setBlocks(x-h,y-k,z-l,x+h,y+k,z+l,air)	
 
 def shafts(mc):
-	xx,yy,zz,h,k,l = 0,0,0,100,100,50 # comment out when design is good
-	clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
+	##xx,yy,zz,h,k,l = 0,0,0,100,100,50 # comment out when design is good
+	##clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
 	# * * * * * * * move along x
 	xs,ys,zs,wh,lgth = -30,-20,30,5,80
 	mc.setBlocks(xs,ys-wh,zs-wh,xs+lgth,ys+wh,zs+wh,89)
