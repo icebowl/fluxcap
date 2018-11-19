@@ -13,47 +13,31 @@ def clear_with_air_up(mc, x, y, z,h,k,l):
 	air = 0;
 	mc.setBlocks(x-h,y,z-l,x+h,y+k,z+l,air)	
 	
-def stairs(mc,xs,ys,zs,w,steps):
+def stairsn(mc,xs,ys,zs,w,steps):
 	#steps go up long z
 	wd = int(w/2)
 	steplength = steps
 	for n in range (0,steps):
 		mc.setBlocks(xs-wd,ys+n,zs+(n*2),xs+wd,ys+n,zs+(steps*2),42)
 		steplength = steplength - 2 
-
-def FiveBlocks(mc):
-	xx,yy,zz,h,k,l = 0,0,0,50,100,50 # comment out when design is good
-	clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
-	xs,ys,zs = 10,25,10
-	mc.setBlocks(xs+5,ys,zs+5,xs-5,ys-5,zs-5,35,14)	 #red
-	xs,ys,zs = -10,25,10
-	mc.setBlocks(xs+5,ys,zs+5,xs-5,ys-5,zs-5,35,13)	# green
-	xs,ys,zs = -10,25,-10
-	mc.setBlocks(xs+5,ys,zs+5,xs-5,ys-5,zs-5,35,11)	# blue
-	xs,ys,zs = 10,25,-10
-	mc.setBlocks(xs+5,ys,zs+5,xs-5,ys-5,zs-5,35,4)	#yellow
-	xs,ys,zs = 0,25,0
-	mc.setBlocks(xs+5,ys,zs+5,xs-5,ys-5,zs-5,35,0)	#white
-	x, y, z = mc.player.getPos()
-	print("position ",x,y,z)
-	scnds = 1
-	mc.player.setPos(13,35	,13)
-	sleep(scnds)
-	mc.player.setPos(-7,35	,13)
-	sleep(scnds)
-	mc.player.setPos(-7,35	,-7)
-	sleep(scnds)
-	mc.player.setPos(13,35	,-7)
-	sleep(scnds)
-	mc.player.setPos(0,45,0)
-	#mc.player.setPos(12,28,10)
-	stairs(mc,0,25,5,10,10)
-	 
-	
+		
+def stairss(mc,xs,ys,zs,w,steps):
+	#steps go up long z
+	wd = int(w/2)
+	steplength = steps
+	for n in range (0,steps):
+		mc.setBlocks(xs-wd,ys+n,zs-(n*2),xs+wd,ys+n,zs-(steps*2),42)
+		steplength = steplength - 2 
 	
 def main():
 	mc = init()
-	FiveBlocks(mc)
+	xx,yy,zz,h,k,l = 0,0,0,70,50,70 # comment out when design is good
+	clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
+	#stairsn(mc,x,y,z,w(idth),steps)
+	stairsn(mc,0,10,-40,10,10)
+	stairss(mc,0,10,40,10,10)
+	xx,yy,zz,w,l = 0,20,0,5,50
+	mc.setBlocks(xx-w,yy,zz,xx+w,yy+1,zz+l,42)
 	
 main()
 
