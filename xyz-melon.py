@@ -21,7 +21,7 @@ def stairs(mc,xs,ys,zs,w,steps):
 		mc.setBlocks(xs-wd,ys+n,zs+(n*2),xs+wd,ys+n,zs+(steps*2),103)
 		steplength = steplength - 2 
 
-def FiveBlocks(mc):
+ FiveBlocks(mc):
 	xx,yy,zz,h,k,l = 0,0,0,50,100,50 # comment out when design is good
 	clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
 	xs,ys,zs = 10,25,10
@@ -51,6 +51,7 @@ def FiveBlocks(mc):
 
 def checkBlock(mc,score):
 	entityIds=mc.getPlayerEntityIds()
+	print(entityIds)/
 	blockEvent=mc.events.pollBlockHits()
 	for each in blockEvent:
 		x=each.pos.x
