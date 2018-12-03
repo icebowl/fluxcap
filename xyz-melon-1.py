@@ -2,7 +2,9 @@
 # put this on the desktop : git clone https://github.com/tritechsc/mcpi
 from mcpi.minecraft import Minecraft
 from mcpi import block
+from mcpi import event
 from time import sleep
+from random import randint
 
 def init():
     mc = Minecraft.create("127.0.0.1", 4711)
@@ -12,13 +14,23 @@ def init():
 def clear_with_air_up(mc, x, y, z,h,k,l):
 	air = 0;
 	mc.setBlocks(x-h,y,z-l,x+h,y+k,z+l,air)	
-	
+
+def melon(mc):
+	eI=mc.getPlayerEntityIds()
+	m = 0
+	while m<(len(eI)*50):
+		x=randint(-10,10)
+		z=randint(-10,10)
+		y=mc.getHeight(x,z)
+		mc.setBlock(x,y,z,103)
+		m = m + 1
+
 def stairs(mc,xs,ys,zs,w,steps):
 	#steps go up long z
 	wd = int(w/2)
 	steplength = steps
 	for n in range (0,steps):
-		mc.setBlocks(xs-wd,ys+n,zs+(n*2),xs+wd,ys+n,zs+(steps*2),103)
+		mc.setBlocks(xs-wd,ys+n,zs+(n*2),xs+wd,ys+n,zs+(steps*2),82)
 		steplength = steplength - 2 
 
 def FiveBlocks(mc):
@@ -49,37 +61,34 @@ def FiveBlocks(mc):
 	#mc.player.setPos(12,28,10)
 	stairs(mc,0,25,5,10,10)
 
-def check(mc):
-	blockEvents = mc.events.pollBlockHits()
-	for blockEvent in blockEvents:
-		print (blockEvent)
-
-def checkBlock(mc,score):
-    print blockEvent
+def checkHit(mc,score,c):
+	#global meloncount
 	entityIds=mc.getPlayerEntityIds()
-	print(entityIds)
+	for each in entityIds:
+		if each not in score:
+			score.update({each:0})
+			mc.setting("world_immutable",True)
+			melon(mc)
 	blockEvent=mc.events.pollBlockHits()
 	for each in blockEvent:
 		x=each.pos.x
 		y=each.pos.y
 		z=each.pos.z
 		if mc.getBlock(x,y,z)==103:
-			mc.setBlock(x,y,z,98)
+			mc.setBlock(x,y,z,20)
+			#meloncount=meloncount-1
 			playerId=each.entityId
-			print(playerId)
-			
-			#score[playerId]=score[playerId]+1
-	
-	
+			score[playerId]=score[playerId]+1
+			mc.postToChat("Player {0} has {1} points!".format(playerId,score[playerId]))
 def main():
 	mc = init()
 	mc.setting("world_immutable",True)
 	FiveBlocks(mc)
-	score_sum = 0
 	score = {}
 	done = 0
+	c = 0
 	while (done == 0):
-		check(mc)
+		checkHit(mc,score,c)
 		
 main()
 
