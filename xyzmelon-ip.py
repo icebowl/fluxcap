@@ -33,7 +33,7 @@ def stairs(mc,xs,ys,zs,w,steps):
 		mc.setBlocks(xs-wd,ys+n,zs+(n*2),xs+wd,ys+n,zs+(steps*2),82)
 		steplength = steplength - 2 
 
-def FiveBlocks(mc,h_):
+def FiveBlocks(mc):
 	xx,yy,zz,h,k,l = 0,20,0,50,100,50 # comment out when design is good
 	clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
 	xs,ys,zs = 10,25,10
