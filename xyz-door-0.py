@@ -13,23 +13,29 @@ def clear_with_air_up(mc, x, y, z,h,k,l):
 	air = 0;
 	mc.setBlocks(x-h,y,z-l,x+h,y+k,z+l,air)	
 	
-def pyramid(mc,x,y,z):
-	h,l = 15,15
-	for k in range (0,16):
-		mc.setBlocks(x+h,y+k,z-l,x-h,y+k,z+l,35,k)	
-		if (k == 15):
-				mc.setBlocks(x+h,y+k,z-l,x-h,y+k,z+l,103)
-		print(x,y,z,h,k,l)
-		l = l-1
-		h = h-1
+
 		
 	
 def main():
 	mc = init()
-	xx,yy,zz,h,k,l = 0,0,0,50,100,50 # comment out when design is good
+	xx,yy,zz,h,k,l = 0,0,0,10,100,10 # comment out when design is good
 	clear_with_air_up(mc,xx, yy, zz,h,k,l) # comment out when design is good
-	pyramid(mc,0,0,0)
-	mc.player.setPos(0, 10	,-20)
+	x,y,z = 0,0,0
+	#mc.setBlock(x, y+3, z, 35, 0)
+	#mc.setBlock(x, y+2, z, 35, 1)
+	##mc.setBlock(x, y+1, z+2, 64, 8,4)
+	##mc.setBlock(x, y, z+2, 64, 0,4)
+	for d in range (0,60):
+		mc.setBlocks(x-5, y, z,x+5,y + 5, z, 35,d)
+		mc.setBlock(x, y, z,35,d)
+		#mc.setBlock(x-5, y+2, z, 64, d)
+		mc.setBlock(x, y+1, z, 64, 4)
+		mc.setBlock(x, y+2, z, 64, d)
+		
+		
+		sleep(1)
+		print("d ",d)
+	mc.player.setPos(x-1, y, z-3)
 	
 		
 main()

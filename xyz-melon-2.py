@@ -58,7 +58,7 @@ def FiveBlocks(mc):
 	mc.player.setPos(13,35	,-7)
 	sleep(scnds)
 	mc.player.setPos(0,45,0)
-	#mc.player.setPos(12,28,10)
+	#mc.player.setPos(12,28,10)g 
 	stairs(mc,0,25,5,10,10)
 
 def checkHit(mc,score,c):
